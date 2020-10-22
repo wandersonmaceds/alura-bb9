@@ -1,7 +1,8 @@
-const { throwIfEmpty, throwIfNotPresent } = require('../util/validators');
+const { throwIfEmpty, throwIfNotPresent, throwIfEmailNotValid } = require('../util/validators');
 const permitedRoles = require('./Roles');
 
 class User {
+    
     constructor(name, email, alura_id, roles) {
         this.name = name;
         this.email = email;
@@ -20,6 +21,7 @@ class User {
 
     set email(email) {
         throwIfEmpty(email, 'Email não pode ser vazio');
+        throwIfEmailNotValid(email, 'Email em formato inválido');
         this._email = email;
     }
 
