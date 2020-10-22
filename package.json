@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "class-validator": "^0.12.2",
+    "dotenv": "^8.2.0",
     "pg": "^8.4.1",
     "typeorm": "^0.2.28"
   }
