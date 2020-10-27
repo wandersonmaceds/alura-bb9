@@ -1,4 +1,4 @@
-module.exports = {
+const schema = {
     name: 'User',
     tableName: 'user',
     columns: {
@@ -26,3 +26,15 @@ module.exports = {
         },
     }
 }
+
+const options = {
+    save: function(connection, user) {
+        return connection.getRepository('User').save(user);
+    },
+    list: function(connection) {
+        return connection.getRepository('User').find();
+    }
+}
+
+
+module.exports = { schema, options }
