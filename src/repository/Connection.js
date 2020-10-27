@@ -1,7 +1,6 @@
-require('dotenv').config();
 
 const { createConnection, EntitySchema } = require("typeorm");
-const UserRepository = require('./UserRepository');
+const UserRepository = require('./UserRepository').schema;
 
 module.exports = { 
     getInstance: function () {
