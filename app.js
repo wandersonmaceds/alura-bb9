@@ -18,13 +18,3 @@ app.post('/user', async (req, res) => {
 const { PORT } = process.env;
 
 app.listen(PORT, () => {  console.log(`Server is up on ${PORT}`) })
-
-/* 
-
-1 - Refatorar para ES6
-2 - Criar dockerfile - docker-compose? (optional pra quem usa docker);
-3 - isolar as configurações do express.
-4 - criar controller de usuário.
-5 - endpoint para listar usuários.
-
-*/
