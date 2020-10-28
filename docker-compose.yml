@@ -1,0 +1,38 @@
+version: '3.8'
+
+services: 
+  app:
+    container_name: app
+    build: '.'
+    volumes: 
+      - .:/src/app
+    depends_on: 
+      - db
+    ports: 
+      - '3000:3000'
+    environment: 
+      DATABASE_URL: ${DB_TYPE}://${DB_USER}:${DB_PASS}@db:${DB_PORT}/${DB_NAME}
+      PORT: ${APP_PORT}
+    networks: 
+      - app-network
+
+  db:
+    container_name: db
+    image: postgres:12.4
+    volumes: 
+      - db-data
+    ports: 
+      - '${DB_PORT}:${DB_PORT}'
+    networks: 
+      - app-network
+    environment: 
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+
+volumes: 
+  db-data:
+
+networks: 
+  app-network:
+    driver: bridge
