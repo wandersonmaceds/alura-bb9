@@ -3,11 +3,12 @@ const permitedRoles = require('./Roles');
 
 class User {
     
-    constructor(name, email, alura_id, roles) {
+    constructor(name, email, aluraId, roles, isActive) {
         this.name = name;
         this.email = email;
-        this.alura_id = alura_id;
+        this.aluraId = aluraId;
         this.roles = roles;
+        this._isActive = isActive;
     }
 
     set name(name) {
@@ -38,6 +39,15 @@ class User {
     get roles() {
         return this._roles;
     }
+
+    get isActive() {
+        return this._isActive;
+    }
+
+    toggleSubscription() {
+        this._isActive = !this._isActive;
+    }
+
 }
 
 module.exports = { User }

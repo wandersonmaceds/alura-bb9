@@ -5,16 +5,38 @@ const Connection = require('./src/repository/Connection');
 const { User } = require('./src/model/User');
 const { options } = require('./src/repository/UserRepository');
 const app = express();
+
 app.use(express.json());
 
 app.post('/user', async (req, res) => {
-    const {name, email, alura_id, roles} = req.body;
-    const user = new User(name, email, alura_id, roles);
+    let statusCode = 201;
+    const {name, email, alura_id, roles, is_active = true} = req.body;
     const conn = await Connection.getInstance();
-    const result = await options.save(conn, user);
-    res.send(`${result.id} created`);
-})
+    const userA = await options.findOne(conn, { email });
+    
+    console.log(userA);
 
+    if(!(userA === undefined)) {
+        userA.toggleSubscription();
+        await options.update(conn, userA);
+        statusCode = 200;
+    } else {
+        const user = new User(name, email, alura_id, roles, is_active);
+        try {
+            await options.save(conn, user);
+        } catch(error) {
+            // console.log(error); usar o winston ou algum outro logger
+            statusCode = 400;    
+        }
+    } 
+    await conn.close();
+    res.sendStatus(statusCode);
+});
+    
+    
+    
 const { PORT } = process.env;
 
-app.listen(PORT, () => {  console.log(`Server is up on ${PORT}`) })
+app.listen(PORT, () => {  /* console.log(`Server is up on ${PORT}`) */ });
+
+module.exports = { app };
