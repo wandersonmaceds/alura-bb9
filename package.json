@@ -14,7 +14,8 @@
   "license": "MIT",
   "devDependencies": {
     "jest": "^26.6.0",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "supertest": "^6.0.0"
   },
   "dependencies": {
     "class-validator": "^0.12.2",
