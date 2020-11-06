@@ -7,7 +7,8 @@
     "start": "node app.js",
     "start:dev": "nodemon app.js",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:watchAll": "jest --watchAll"
   },
   "keywords": [],
   "author": "",
