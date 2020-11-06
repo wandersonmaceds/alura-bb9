@@ -15,7 +15,7 @@ services:
       PORT: ${APP_PORT}
     networks: 
       - app-network
-    entrypoint: 'npm run test'
+    entrypoint: 'npm run test:watchAll'
 
   db:
     container_name: db
