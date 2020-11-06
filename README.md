@@ -46,4 +46,4 @@ Para derrubar o container é bem simples, basta pressionar `Ctrl + C` caso não 
 docker-compose down
 ```
 
-**<font color="red">Cuidado! caso queira remover também os volumes, você pode passar a flag `-v` para que seja deletado.</font>**
+**Cuidado! caso queira remover também os volumes, você pode passar a flag `-v` para que seja deletado.**
