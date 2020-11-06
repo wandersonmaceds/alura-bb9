@@ -15,6 +15,7 @@ services:
       PORT: ${APP_PORT}
     networks: 
       - app-network
+    entrypoint: 'npm run start:dev'
 
   db:
     container_name: db
