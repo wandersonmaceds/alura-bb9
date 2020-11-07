@@ -1,6 +1,4 @@
-const { User } = require('../../src/model/User');
-
-
+import User from '../../src/model/User.js';
 
 describe('User', () => {
     test('a user with an empty name throws an error', () => {

@@ -1,40 +1,7 @@
-const { User } = require("../model/User");
+import User from '../model/User.js';
 
-const schema = {
-    name: 'User',
-    tableName: 'user',
-    columns: {
-        id: {
-            primary: true,
-            type: 'int', 
-            generated: true
-        }, 
-        name: {
-            type: 'varchar',
-            notNull: true
-        },
-        email: {
-            type: 'varchar',
-            notNull: true,
-            unique: true,
-        },
-        alura_id: {
-            type: 'int',
-            notNull: true,
-        },
-        roles: {
-            type: 'varchar',
-            default: 'contributer'
-        },
-        is_active: {
-            type: 'boolean',
-            default: true,
-        }
-    }
-}
-
-const options = {
-    save: function(connection, user) {
+export default {
+    save(connection, user) {
         return connection.getRepository('User').save({
             name: user.name,
             email: user.email,
@@ -43,10 +10,7 @@ const options = {
             is_active: user.isActive
         });
     },
-    list: function(connection) {
-        return connection.getRepository('User').find();
-    }, 
-    findOne: function (connection, criteria) {
+    findOne(connection, criteria){
         return connection.getRepository('User').findOne(criteria).then(result => {
             if(!result)
                 return null;
@@ -55,10 +19,10 @@ const options = {
             return user;
         });
     },
-    update: function(connection, user) {
+    findAll(connection){
+        return connection.getRepository('User').find();
+    },
+    update(connection, user){
         return connection.getRepository('User').save(user);
-    }
+    },
 }
-
-
-module.exports = { schema, options }

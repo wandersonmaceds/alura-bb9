@@ -1,6 +1,6 @@
-    const request = require('supertest');
-const { app } = require('../../app');
-const { cleanupUsers } = require('../util/database');
+import request from 'supertest';
+import { app } from '../../app';
+import { cleanupUsers } from '../util/database';
 
 describe('UserController', () => {
 

@@ -1,9 +1,7 @@
-const Connection = require("../../src/repository/Connection")
+import getInstance from "../../src/config/connection.js";
 
-module.exports = {
-    cleanupUsers: async () => {
-        await Connection.getInstance('test').then(async c => {
-            await c.query('DELETE FROM public.user');
-        })
-    }
-}
+export async function cleanupUsers(){
+    await getInstance('test').then(async c => {
+        await c.query('DELETE FROM public.user');
+    })
+};

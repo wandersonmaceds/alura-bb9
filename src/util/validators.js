@@ -1,12 +1,12 @@
-const validator = require('class-validator');
+import validator from 'class-validator';
 
-function throwIfEmpty(field, message) {
+export function throwIfEmpty(field, message) {
     if(validator.isEmpty(field)) {
         throw new Error(message);
     }
 }
 
-function throwIfNotPresent(value, target, message) {
+export function throwIfNotPresent(value, target, message) {
     if (!validator.isArray(target)) {
         throw new Error(`${target} não é um array`);
     }
@@ -16,10 +16,8 @@ function throwIfNotPresent(value, target, message) {
     }
 }
 
-function throwIfEmailNotValid(value, message) {
+export function throwIfEmailNotValid(value, message) {
     if(!validator.isEmail(value)) {
         throw new Error(message);
     }
 }
-
-module.exports = { throwIfEmpty, throwIfNotPresent, throwIfEmailNotValid }

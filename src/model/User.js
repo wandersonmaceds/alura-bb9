@@ -1,7 +1,7 @@
-const { throwIfEmpty, throwIfNotPresent, throwIfEmailNotValid } = require('../util/validators');
-const permitedRoles = require('./Roles');
+import { throwIfEmpty, throwIfNotPresent, throwIfEmailNotValid } from '../util/validators.js';
+import permitedRoles from './Roles.js';
 
-class User {
+export default class User {
     
     constructor(name, email, aluraId, roles, isActive) {
         this.name = name;
@@ -49,5 +49,3 @@ class User {
     }
 
 }
-
-module.exports = { User }
