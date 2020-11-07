@@ -10,13 +10,13 @@ app.use(express.json());
 
 app.post('/user', async (req, res) => {
     let statusCode = 201;
-    const {name, email, alura_id, roles, is_active = true} = req.body;
+    const { name, email, alura_id, roles, is_active = true } = req.body;
     const conn = await Connection.getInstance();
     const userA = await options.findOne(conn, { email });
     
     console.log(userA);
 
-    if(!(userA === undefined)) {
+    if(userA) {
         userA.toggleSubscription();
         await options.update(conn, userA);
         statusCode = 200;
@@ -25,7 +25,7 @@ app.post('/user', async (req, res) => {
         try {
             await options.save(conn, user);
         } catch(error) {
-            // console.log(error); usar o winston ou algum outro logger
+            console.log(error);
             statusCode = 400;    
         }
     } 

@@ -27,11 +27,12 @@ describe('UserRepository', () => {
 
         const users = await options.list(connection);
         expect(users).toHaveLength(1);
+
         expect(users.pop()).toMatchObject({
             name: user.name,
             email: user.email,
             roles: user.roles,
-            alura_id: user.alura_id,
+            alura_id: user.aluraId
         })
     });
 });

@@ -28,7 +28,7 @@ describe('User', () => {
         expect(user).toMatchObject({
             name: 'Fabiano',
             email: 'fabiano@host.com',
-            alura_id: 3443,
+            aluraId: 3443,
             roles: 'monitor'
         })
     })
