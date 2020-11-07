@@ -1,7 +1,7 @@
 import express from 'express';
-import getInstance from "../config/connection.js";
-import User from "../model/User.js";
-import UserRepository from "../repository/UserRepository.js";
+import getInstance from "../config/connection";
+import User from "../model/User";
+import UserRepository from "../repository/UserRepository";
 const app = express();
 
 app.use(express.json());

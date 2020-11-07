@@ -1,5 +1,6 @@
+import 'dotenv/config'
 import { createConnection, EntitySchema } from "typeorm";
-import UserSchema from '../schema/user.schema.js';
+import UserSchema from '../schema/user.schema';
 
 export default function getInstance(name) {
     return createConnection({

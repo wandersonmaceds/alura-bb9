@@ -1,23 +1,29 @@
-import validator from 'class-validator';
+import {
+    isEmpty,
+    isArray,
+    isNotIn,
+    isEmail
+}
+from 'class-validator'
 
 export function throwIfEmpty(field, message) {
-    if(validator.isEmpty(field)) {
+    if(isEmpty(field)) {
         throw new Error(message);
     }
 }
 
 export function throwIfNotPresent(value, target, message) {
-    if (!validator.isArray(target)) {
+    if (!isArray(target)) {
         throw new Error(`${target} não é um array`);
     }
 
-    if(validator.isNotIn(value, target)) {
+    if(isNotIn(value, target)) {
         throw new Error(message);
     }
 }
 
 export function throwIfEmailNotValid(value, message) {
-    if(!validator.isEmail(value)) {
+    if(!isEmail(value)) {
         throw new Error(message);
     }
 }

@@ -12,7 +12,6 @@ describe('UserRepository', () => {
     afterEach(async () => {
         await connection.query("DELETE FROM public.user");
         await connection.close();
-        
     });
 
     test('save method saves a user', async () => {
@@ -25,7 +24,7 @@ describe('UserRepository', () => {
         const user = new User('Jonilson', 'jonilson@host.com', 2332, 'monitor');
         await UserRepository.save(connection, user);
 
-        const users = await UserRepository.list(connection);
+        const users = await UserRepository.findAll(connection);
         expect(users).toHaveLength(1);
 
         expect(users.pop()).toMatchObject({

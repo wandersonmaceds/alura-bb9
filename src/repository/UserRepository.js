@@ -1,4 +1,4 @@
-import User from '../model/User.js';
+import User from '../model/User';
 
 export default {
     save(connection, user) {

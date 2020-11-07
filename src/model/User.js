@@ -1,5 +1,5 @@
-import { throwIfEmpty, throwIfNotPresent, throwIfEmailNotValid } from '../util/validators.js';
-import permitedRoles from './Roles.js';
+import { throwIfEmpty, throwIfNotPresent, throwIfEmailNotValid } from '../util/validators';
+import permitedRoles from './Roles';
 
 export default class User {
     
