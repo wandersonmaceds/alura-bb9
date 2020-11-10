@@ -5,14 +5,17 @@ import UserRepository from "../../src/repository/UserRepository";
 describe('UserRepository', () => {
     let connection = null;
 
-    beforeEach(async () => {
-        connection = await initializeConnection("test");
+    beforeAll(async () => {
+        connection = await initializeConnection("user-repository-test");
     });
 
     afterEach(async () => {
         await connection.query("DELETE FROM public.user");
-        await connection.close();
     });
+
+    afterAll( async () => {
+        await connection.close();
+    })
 
     test('save method saves a user', async () => {
         const user = new User('Jonilson', 'jonilson@host.com', 2332, 'monitor');
