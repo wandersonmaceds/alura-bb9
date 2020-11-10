@@ -40,6 +40,10 @@ export default class User {
         return this._roles;
     }
 
+    set isActive(isActive){
+        this._isActive = isActive;
+    }
+
     get isActive() {
         return this._isActive;
     }

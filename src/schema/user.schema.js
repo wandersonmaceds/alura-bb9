@@ -9,24 +9,27 @@ export default {
         },
         name: {
             type: 'varchar',
-            notNull: true
+            notNull: true,
         },
         email: {
             type: 'varchar',
             notNull: true,
             unique: true,
         },
-        alura_id: {
+        aluraId: {
             type: 'int',
             notNull: true,
+            unique: true,
+            name: 'alura_id'
         },
         roles: {
             type: 'varchar',
             default: 'contributer'
         },
-        is_active: {
+        isActive: {
             type: 'boolean',
             default: true,
+            name: 'is_active'
         }
     }
 }

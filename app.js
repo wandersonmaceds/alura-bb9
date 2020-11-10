@@ -1,5 +1,3 @@
-import 'dotenv/config';
-
 import server from './src/config/server';
 
 server.listen(process.env.APP_PORT, () => {

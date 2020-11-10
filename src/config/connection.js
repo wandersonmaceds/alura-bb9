@@ -2,18 +2,21 @@ import 'dotenv/config'
 import { createConnection, EntitySchema } from "typeorm";
 import UserSchema from '../schema/user.schema';
 
-export default function getInstance(name) {
+const options = {
+    name: 'default',
+    type: 'postgres',
+    url: process.env.DATABASE_URL,
+    synchronize: true,
+    entities: [
+        new EntitySchema(UserSchema)
+    ]
+}
+
+export function initializeConnection(name){
     return createConnection({
-        name: name || 'default',
-        type: 'postgres',
-        username: process.env.DB_USER,
-        password: process.env.DB_PASS,
-        database: process.env.DB_NAME,
-        port: process.env.DB_PORT,
-        synchronize: true,
-        entities: [
-            new EntitySchema(UserSchema)
-        ]
+        ...options,
+        name
     });
 }
 
+export default ( () => createConnection(options))();
