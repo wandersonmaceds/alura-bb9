@@ -1,7 +1,7 @@
-const { throwIfEmpty, throwIfNotPresent, throwIfEmailNotValid } = require('../util/validators');
-const permitedRoles = require('./Roles');
+import { throwIfEmpty, throwIfNotPresent, throwIfEmailNotValid } from '../util/validators';
+import permitedRoles from './Roles';
 
-class User {
+export default class User {
     
     constructor(name, email, aluraId, roles, isActive) {
         this.name = name;
@@ -40,6 +40,10 @@ class User {
         return this._roles;
     }
 
+    set isActive(isActive){
+        this._isActive = isActive;
+    }
+
     get isActive() {
         return this._isActive;
     }
@@ -49,5 +53,3 @@ class User {
     }
 
 }
-
-module.exports = { User }

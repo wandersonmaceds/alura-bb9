@@ -1,6 +1,4 @@
-const { User } = require('../../src/model/User');
-
-
+import User from '../../src/model/User.js';
 
 describe('User', () => {
     test('a user with an empty name throws an error', () => {
@@ -28,7 +26,7 @@ describe('User', () => {
         expect(user).toMatchObject({
             name: 'Fabiano',
             email: 'fabiano@host.com',
-            alura_id: 3443,
+            aluraId: 3443,
             roles: 'monitor'
         })
     })

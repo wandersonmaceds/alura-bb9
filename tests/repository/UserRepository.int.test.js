@@ -1,37 +1,40 @@
-const Connection = require("../../src/repository/Connection");
-const { User } =  require('../../src/model/User');
-const { options }  = require('../../src/repository/UserRepository');
+import { initializeConnection } from "../../src/config/connection.js";
+import User from "../../src/model/User.js";
+import UserRepository from "../../src/repository/UserRepository";
 
 describe('UserRepository', () => {
     let connection = null;
 
-    beforeEach(async () => {
-        connection = await Connection.getInstance();
+    beforeAll(async () => {
+        connection = await initializeConnection("user-repository-test");
     });
 
     afterEach(async () => {
         await connection.query("DELETE FROM public.user");
-        await connection.close();
-        
     });
+
+    afterAll( async () => {
+        await connection.close();
+    })
 
     test('save method saves a user', async () => {
         const user = new User('Jonilson', 'jonilson@host.com', 2332, 'monitor');
-        const result = await options.save(connection, user);
+        const result = await UserRepository.save(user);
         expect(result.id).toBeDefined();
     }); 
 
     test('list method list all users', async () => {
         const user = new User('Jonilson', 'jonilson@host.com', 2332, 'monitor');
-        await options.save(connection, user);
+        await UserRepository.save(user);
 
-        const users = await options.list(connection);
+        const users = await UserRepository.findAll();
         expect(users).toHaveLength(1);
+
         expect(users.pop()).toMatchObject({
             name: user.name,
             email: user.email,
             roles: user.roles,
-            alura_id: user.alura_id,
+            aluraId: user.aluraId
         })
     });
 });

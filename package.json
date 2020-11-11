@@ -4,15 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "start:dev": "nodemon app.js",
+    "start": "babel-node app.js",
+    "start:dev": "nodemon --exec babel-node app.js",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:watchAll": "jest --watchAll"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.6",
+    "@babel/preset-env": "^7.12.1",
+    "babel-jest": "^26.6.3",
     "jest": "^26.6.0",
     "nodemon": "^2.0.6",
     "supertest": "^6.0.0"
@@ -22,6 +27,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "pg": "^8.4.1",
-    "typeorm": "^0.2.28"
+    "typeorm": "^0.2.28",
+    "winston": "^3.3.3"
   }
 }

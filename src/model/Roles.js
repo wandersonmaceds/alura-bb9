@@ -1,1 +1,1 @@
-module.exports = ['contributer', 'monitor']
+export default ['contributer', 'monitor']
