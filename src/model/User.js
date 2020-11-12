@@ -1,4 +1,4 @@
-import { throwIfEmpty, throwIfNotPresent, throwIfEmailNotValid } from '../util/validators';
+import { throwIfEmpty, throwIfNotPresent, throwIfEmailNotValid, throwIfIsNotArray } from '../util/validators';
 import permitedRoles from './Roles';
 
 export default class User {
@@ -46,6 +46,15 @@ export default class User {
 
     get isActive() {
         return this._isActive;
+    }
+
+    set courses(courses) {
+        throwIfIsNotArray(courses);
+        this._courses = courses;
+    }
+
+    get courses() {
+        return this._courses;
     }
 
     toggleSubscription() {
