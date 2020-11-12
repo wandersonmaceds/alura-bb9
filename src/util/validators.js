@@ -27,3 +27,9 @@ export function throwIfEmailNotValid(value, message) {
         throw new Error(message);
     }
 }
+
+export function throwIfIsNotArray(target, message) {
+    if(!isArray(target)) {
+        throw new Error(message);
+    }
+}
