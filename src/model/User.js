@@ -9,6 +9,7 @@ export default class User {
         this.aluraId = aluraId;
         this.roles = roles;
         this._isActive = isActive;
+        this._courses = [];
     }
 
     set name(name) {
