@@ -26,4 +26,9 @@ export default class ForumService{
 
         return new Topic(id, subject, createdAt, courseId, subcategoryId, categoryId, userId);
     }
+
+    async execute(result) {
+        const topics = await this.getNoAnsweredTopics();
+        return { users: result, topics };
+    }
 }

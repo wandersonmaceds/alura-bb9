@@ -42,4 +42,11 @@ export default class CourseService {
             finishedAt: LocalDateTime.parse(finishedAt),
         };
     }
+
+    async execute(users) {
+        const courses = await this.findCoursesByUsers(users);
+        users.forEach(user => user.courses = courses.filter(c => c.aluraId == user.aluraId));
+
+        return users;
+    }
 }

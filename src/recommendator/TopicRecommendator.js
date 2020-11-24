@@ -28,4 +28,11 @@ export default class TopicRecommendator {
     _getCoursesIdsFromUser(user) {
         return user.courses.map(course => course.courseId);
     }
+
+    async execute(result) {
+        this.users = result.users;
+        this.topics = result.topics;
+        
+        return this.run();
+    }
 }
