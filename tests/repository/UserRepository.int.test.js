@@ -1,20 +1,21 @@
-import { createConnection } from "typeorm";
 import User from "../../src/model/User.js";
 import UserRepository from "../../src/repository/UserRepository";
+import { PrismaClient } from '@prisma/client';
 
 describe('UserRepository', () => {
-    let connection = null;
+    
+    const prisma = new PrismaClient();
 
     beforeAll(async () => {
-        connection = await createConnection();
+        await prisma.$connect();
     });
 
     afterEach(async () => {
-        await connection.query("DELETE FROM public.user");
+        await prisma.user.deleteMany();
     });
 
     afterAll( async () => {
-        await connection.close();
+        await prisma.$disconnect();
     })
 
     test('save method saves a user', async () => {

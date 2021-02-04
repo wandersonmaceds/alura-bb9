@@ -1,11 +1,12 @@
+import { PrismaClient } from '@prisma/client';
 import request from 'supertest';
 import app from '../../src/config/server';
-import { cleanupUsers } from '../util/database';
+
 
 describe('UserController', () => {
-
+    const prisma = new PrismaClient();
     beforeAll(async () => {
-        await cleanupUsers();
+        await prisma.user.deleteMany();
     });
 
     test('valid user is created', async () => {
