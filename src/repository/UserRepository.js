@@ -1,12 +1,24 @@
 import User from '../model/User';
-import { getRepository } from "typeorm";
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient();
 
 export default {
      save(user) {
-        return getRepository('User').save(user);
+         return prisma.user.create({
+             data: {
+                 name: user.name,
+                 email: user.email, 
+                 roles: user.roles,
+                 is_active: user.isActive,
+                 alura_id: user.aluraId,
+             }
+         })
     },
     async findOne(criteria){
-        const result = await getRepository('User').findOne(criteria);
+        const result = await prisma.user.findUnique({
+            where: { ...criteria },
+        })
 
         if(!result)
             return null;
@@ -18,9 +30,9 @@ export default {
         return user;
     },
     async findAll(){
-        const users = await getRepository('User').find();
+        const users = await prisma.user.findMany();
         return users.map(user => {
-            const newUser = new User(user.name, user.email, user.aluraId, user.roles, user.isActive);
+            const newUser = new User(user.name, user.email, user.alura_id, user.roles, user.is_active);
             newUser.id = user.id;
             newUser.extraContactOptions = user.extraContactOptions;
 
@@ -28,6 +40,15 @@ export default {
         });
     },
     update(user){
-        return getRepository('User').save(user);
+        return prisma.user.update({
+            data: { 
+                name: user.name,
+                email: user.email, 
+                roles: user.roles,
+                is_active: user.isActive,
+                alura_id: user.aluraId,
+            },
+            where: { id: user.id }
+        })
     },
 }

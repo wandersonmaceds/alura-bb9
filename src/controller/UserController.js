@@ -8,7 +8,7 @@ export default {
 
         const { name, email, alura_id, roles, is_active = true } = request.body;
 
-        const userFromDatabase = await UserRepository.findOne({ email, aluraId: alura_id });
+        const userFromDatabase = await UserRepository.findOne({ email });
 
         if(userFromDatabase){
             userFromDatabase.toggleSubscription();
