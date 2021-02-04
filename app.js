@@ -12,10 +12,8 @@ import SlackService from './src/service/SlackService';
 import EmailService from "./src/service/EmailService";
 
 import TopicRecommendator from "./src/recommendator/TopicRecommendator";
-import { createConnection } from 'typeorm';
 import MessageService from './src/service/MessageService';
 
-createConnection();
 
 server.listen(process.env.APP_PORT, () => {
     console.log(`Server is up on ${process.env.APP_PORT}`)

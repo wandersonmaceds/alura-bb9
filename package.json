@@ -33,9 +33,7 @@
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.31",
     "node-schedule-tz": "^1.2.1-4",
-    "pg": "^8.4.1",
     "slug": "^4.0.2",
-    "typeorm": "^0.2.29",
     "winston": "^3.3.3"
   }
 }
