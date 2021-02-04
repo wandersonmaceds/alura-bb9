@@ -1,4 +1,7 @@
-export default {
+import { EntitySchema } from "typeorm"
+import { Roles, allowedRoles } from "../model/Roles";
+
+export default new EntitySchema({
     name: 'User',
     tableName: 'user',
     columns: {
@@ -23,13 +26,20 @@ export default {
             name: 'alura_id'
         },
         roles: {
-            type: 'varchar',
-            default: 'contributer'
+            type: 'enum',
+            array: true,
+            enum: allowedRoles(),
+            default: [Roles.CONTRIBUTER]
         },
         isActive: {
             type: 'boolean',
             default: true,
             name: 'is_active'
+        },
+        extraContactOptions: {
+            type: 'json',
+            default: '{}',
+            name: 'extra_contact_options'
         }
     }
-}
+})

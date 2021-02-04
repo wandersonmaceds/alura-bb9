@@ -11,7 +11,7 @@ describe('UserController', () => {
     test('valid user is created', async () => {
         await request(app)
             .post('/user')
-            .send({ name: 'Joka', email: 'joka@host.com', alura_id: 222, roles: 'monitor' })
+            .send({ name: 'Joka', email: 'joka@host.com', alura_id: 222, roles: ['monitor'] })
             .set('Content-Type', 'application/json')
             .expect(201);
     });
@@ -22,7 +22,7 @@ describe('UserController', () => {
             name: 'Lucas',
             email: 'lucas@alura.com.br',
             alura_id: 132,
-            roles: 'monitor'
+            roles: ['monitor']
         }
 
         await request(app)

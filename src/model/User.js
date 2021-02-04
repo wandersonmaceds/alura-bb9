@@ -1,5 +1,5 @@
 import { throwIfEmpty, throwIfNotPresent, throwIfEmailNotValid, throwIfIsNotArray } from '../util/validators';
-import permitedRoles from './Roles';
+import {allowedRoles} from './Roles';
 
 export default class User {
     
@@ -33,7 +33,7 @@ export default class User {
 
     set roles(roles) {
         throwIfEmpty(roles, 'Perfis não pode ser vazio');
-        throwIfNotPresent(roles, permitedRoles, `Perfil ${roles} não existe`);
+        throwIfNotPresent(roles, allowedRoles(), `Perfil ${roles} não existe`);
         this._roles = roles;
     }
 
@@ -60,6 +60,10 @@ export default class User {
 
     toggleSubscription() {
         this._isActive = !this._isActive;
+    }
+
+    hasRole(role) {
+        return this.roles.includes(role);
     }
 
 }

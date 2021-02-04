@@ -1,8 +1,8 @@
 import {
     isEmpty,
     isArray,
-    isNotIn,
-    isEmail
+    isEmail,
+    arrayNotContains,
 }
 from 'class-validator'
 
@@ -16,8 +16,8 @@ export function throwIfNotPresent(value, target, message) {
     if (!isArray(target)) {
         throw new Error(`${target} não é um array`);
     }
-
-    if(isNotIn(value, target)) {
+    
+    if(arrayNotContains(target, [].concat(value))) {
         throw new Error(message);
     }
 }

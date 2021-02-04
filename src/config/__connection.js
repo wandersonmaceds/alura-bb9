@@ -7,6 +7,10 @@ const options = {
     type: 'postgres',
     url: process.env.DATABASE_URL,
     synchronize: true,
+    migrations: ["../schema/migrations/*.js"],
+    cli: {
+        migrationsDir: ["../schema/migrations"]
+    },
     entities: [
         new EntitySchema(UserSchema)
     ]

@@ -1,4 +1,4 @@
-import { initializeConnection } from "../../src/config/connection.js";
+import { createConnection } from "typeorm";
 import User from "../../src/model/User.js";
 import UserRepository from "../../src/repository/UserRepository";
 
@@ -6,7 +6,7 @@ describe('UserRepository', () => {
     let connection = null;
 
     beforeAll(async () => {
-        connection = await initializeConnection("user-repository-test");
+        connection = await createConnection();
     });
 
     afterEach(async () => {
@@ -18,13 +18,13 @@ describe('UserRepository', () => {
     })
 
     test('save method saves a user', async () => {
-        const user = new User('Jonilson', 'jonilson@host.com', 2332, 'monitor');
+        const user = new User('Jonilson', 'jonilson@host.com', 2332, ['monitor']);
         const result = await UserRepository.save(user);
         expect(result.id).toBeDefined();
     }); 
 
     test('list method list all users', async () => {
-        const user = new User('Jonilson', 'jonilson@host.com', 2332, 'monitor');
+        const user = new User('Jonilson', 'jonilson@host.com', 2332, ['monitor']);
         await UserRepository.save(user);
 
         const users = await UserRepository.findAll();

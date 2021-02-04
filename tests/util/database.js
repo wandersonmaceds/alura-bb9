@@ -1,7 +1,5 @@
-import { initializeConnection } from "../../src/config/connection.js";
+import { createConnection } from "typeorm";
 
 export async function cleanupUsers(){
-    await initializeConnection('test').then(async c => {
-        await c.query('DELETE FROM public.user');
-    })
+    await createConnection().then(c => c.query('DELETE FROM public.user'));
 };

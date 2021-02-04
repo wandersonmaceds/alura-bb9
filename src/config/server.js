@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import './connection';
+// import './connection';
 import express from 'express';
 import routes from "./routes";
 
